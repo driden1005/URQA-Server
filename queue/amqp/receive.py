@@ -1,8 +1,8 @@
 import sys
 import pika
 import json
-#import logging
 
+#import logging
 #logger = logging.getLogger('worker')
 #handler = logging.FileHandler('/home/gumidev/workspace//log/worker.log')
 #formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
@@ -12,18 +12,26 @@ import json
 
 
 credentials = pika.PlainCredentials('guest', 'guest')
-parameters  = pika.ConnectionParameters(host='14.63.164.245', port=5672, credentials=credentials)
+parameters  = pika.ConnectionParameters(host='14.63.164.245', 
+                                        port=5672, 
+                                        credentials=credentials)
+
 connection  = pika.BlockingConnection(parameters)
 channel     = connection.channel()
 
-channel.exchange_declare(exchange='urqa-exchange', type='topic',durable=True)
-result     = channel.queue_declare(queue='ur-queue',durable=True,auto_delete=True)
+channel.exchange_declare(exchange='urqa-exchange', 
+                         type='topic',
+                         durable=True)
+
+result     = channel.queue_declare(queue='ur-queue',
+                                   durable=True,
+                                   auto_delete=True)
 queue_name = result.method.queue
 #print queue_name
 
-channel.queue_bind(exchange ='urqa-exchange', queue = queue_name)
+channel.queue_bind(exchange ='urqa-exchange', 
+                queue = queue_name)
 
-#channel.basic_publish(exchange = 'urqa-exchange')
 print " [*] Waiting for messages. To exit press CTRL+C"
 #logger.info(" [*] Waiting for messages. To exit press CTRL+C")
 
