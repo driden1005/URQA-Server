@@ -4,10 +4,10 @@
     "port": 50000,
 
     "mq": {
-      "host": "14.63.164.245",
+      "host": "127.0.0.1",
       "port": 5672,
-      "login": "gumidev",
-      "password": "gumikorea",
+      "login": "guest",
+      "password": "guest",
       "authMechanism": "AMQPLAIN",
       "vhost": "/"
     }
