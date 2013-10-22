@@ -10,39 +10,33 @@ var _queue = [];
 
 var _isReady = false;
 
-// trinitysouls
-exports.PUSH_EXCHANGE_NAME = "urqa-exchange";
-exports.PUSH_QUEUE_NAME    = "urqa-queue";
+var queueExchange  = "urqa-exchange";
+var queueName      = "urqa-queue";
 
 var MAX_RETRY_COUNT = 5;
 
 var connection = amqp.createConnection(gk.config.mq);
+
 connection.addListener('ready', function () {
-  
-  if (connection.serverProperties.product == "RabbitMQ"){
-    console.log("connected to " + connection.serverProperties.product);
-    _isReady = true;
-  }
-
-  connection.queue(exports.PUSH_QUEUE_NAME, {durable: true, autoDelete: false}, function(q) { 
-    var queueName = exports.PUSH_QUEUE_NAME;
-    console.log('onQueue ' + queueName);
-    var exchange = connection.exchange(exports.PUSH_EXCHANGE_NAME, {durable:true, autoDelete:false});
-    q.bind(exchange, "*");
-    _queue[queueName] = exchange;
-  });
-
+  console.log("connected to " + connection.serverProperties.product);
+  var exchange = connection.exchange(queueExchange ,{ type:"topic", durable:true } );
+  _queue[queueName] = exchange;
+  _isReady = true;
 });
+
+process.addListener('exit', function () {
+  console.log('Queue Exit ' + recvCount);
+});
+
 
 
 exports.publish = function(queueName, msg, retry) {
   retry = retry || 0;
-
   if (retry > MAX_RETRY_COUNT) { return; }
-
   if (!_isReady) {
     // TODO: use backoff or wait for it
     process.nextTick(function() { exports.publish(queueName, msg, retry + 1); });
+    _isReady = false;
     return;
   }
 
@@ -53,6 +47,7 @@ exports.publish = function(queueName, msg, retry) {
   } else {
     // TODO: binding queue automatically
     console.log("WhatTheHuck? Couldn't find the queue " + queueName);
+    _isReady = false;
   }
 
 };

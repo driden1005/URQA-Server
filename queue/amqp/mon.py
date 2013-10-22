@@ -1,7 +1,7 @@
 import os
 import time
 
-from PJAProcess import PJAProcess
+from PEProcess import PEProcess
 
 # pid_list = psutil.get_pid_list()
 # print pid_list

@@ -1,7 +1,7 @@
 'use strict';
 
 var gk   = require('../common');
-var gkmq = require('../handler/amqp_handler');
+var mq   = require('../handler/amqp_handler');
 
 /*
 URL   : http://192.168.0.13:9876/push/send
@@ -29,7 +29,7 @@ exports.send = function(req, res) {
   // TODO: validation check
   var queueName = "ruqa-queue";
   var pushdata = { "receivers": JSON.parse(receivers), "data": data, "os": ostype };
-  gkmq.publish(queueName, pushdata);
+  mq.publish(queueName, pushdata);
  
   var result = { 'state': 'OK'};
   res.send(result);
