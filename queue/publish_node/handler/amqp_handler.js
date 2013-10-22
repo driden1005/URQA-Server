@@ -14,7 +14,7 @@ var queueExchange  = "urqa-exchange";
 var queueName      = "urqa-queue";
 
 var MAX_RETRY_COUNT = 5;
-
+var retry           = 3;
 var connection = amqp.createConnection(gk.config.mq);
 
 connection.addListener('ready', function () {
@@ -30,12 +30,12 @@ process.addListener('exit', function () {
 
 
 
-exports.publish = function(queueName, msg, retry) {
+exports.publish = function(queueName, msg) {
   retry = retry || 0;
   if (retry > MAX_RETRY_COUNT) { return; }
   if (!_isReady) {
     // TODO: use backoff or wait for it
-    process.nextTick(function() { exports.publish(queueName, msg, retry + 1); });
+    process.nextTick(function() { exports.publish (queueName, msg, retry + 1); });
     _isReady = false;
     return;
   }
