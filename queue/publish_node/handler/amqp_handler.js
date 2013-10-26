@@ -1,13 +1,9 @@
 //'use strict';
 
 var gk = require('../common');
-
 var amqp = require('amqp');
-
 var self = this;
-
-var _queue = [];
-
+var _queue   = [];
 var _isReady = false;
 
 var queueExchange  = "urqa-exchange";
@@ -23,6 +19,7 @@ connection.addListener('ready', function () {
   _queue[queueName] = exchange;
   _isReady = true;
 });
+
 
 process.addListener('exit', function () {
   console.log('Queue Exit ' + recvCount);
