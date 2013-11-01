@@ -1,10 +1,10 @@
 'use strict'
 
-var loger = require(__dirname + '/../controllers/loger_controller');
+var logger = require(__dirname + '/../controllers/logger_controller');
 
 var routes = function(app) {
   // common
-  app.post('/loger/send', loger.send);
+  app.post('/logger/send', logger.send);
 }
   
 exports.route = routes;
