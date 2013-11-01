@@ -1,6 +1,6 @@
 'use strict'
 
-var logger = require(__dirname + '/../controllers/logger_controller');
+var logger = require(__dirname + 'controllers/logger_controller');
 
 var routes = function(app) {
   // common
