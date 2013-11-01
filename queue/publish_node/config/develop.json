@@ -1,16 +1,16 @@
 {
     "dev": true,
     "host": "0.0.0.0",
-    "port": 50000,
+    "port": 55555,
 
-    "mqExchangeName":"urqa-exchange",
-    "mqQueueName":"urqa-queue",
+    "mqExchangeName":"node-exchange",
+    "mqQueueName":"node-queue",
 
     "mq": {
-      "host":"192.168.0.14",
+      "host":"14.63.164.245",
       "port":5672,
-      "login":"gumidev",
-      "password":"gumikorea",
+      "login":"guest",
+      "password":"guest",
       "authMechanism":"AMQPLAIN",
       "vhost":"/"
     }

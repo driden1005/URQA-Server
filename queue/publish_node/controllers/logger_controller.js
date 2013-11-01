@@ -1,5 +1,5 @@
-
 'use strict';
+
 var gk             = require('../common');
 var mq_pubhandler  = require('../handler/mq_pubhandler');
 var queueName      = gk.config.mqQueueName;
@@ -19,7 +19,7 @@ exports.send = function(req, res) {
   console.log(data);
 
   // TODO: validation check
-  var queueName = "urqa-queue";
+  var queueName = "node-queue";
   var data      = { "receivers": JSON.parse(receivers), "data": data, "type": type };
 
   var index;
