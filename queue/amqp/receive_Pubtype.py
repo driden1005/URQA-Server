@@ -1,16 +1,5 @@
 import sys
 import pika
-import json
-
-'''
-import logging
-logger = logging.getLogger('worker')
-handler = logging.FileHandler('/home/workspace/develop/rabbitmq/URQA-Server/queue/amqp/log/worker.log')
-formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
-'''
 
 credentials = pika.PlainCredentials('guest', 'guest')
 parameters  = pika.ConnectionParameters(host='14.63.164.245', 
@@ -20,18 +9,13 @@ parameters  = pika.ConnectionParameters(host='14.63.164.245',
 connection  = pika.BlockingConnection(parameters)
 channel     = connection.channel()
 
-channel.exchange_declare(exchange='urqa-exchange', 
-                         type='topic',
-                         durable=True)
+channel.exchange_declare(exchange='ur-exchange', type='fanout')
+result = channel.queue_declare(exclusive=True)
 
-result     = channel.queue_declare(queue='ur-queue',
-                                   durable=True,
-                                   auto_delete=True)
 queue_name = result.method.queue
 print queue_name
 
-channel.queue_bind(exchange ='urqa-exchange', 
-                queue = queue_name)
+channel.queue_bind(exchange ='ur-exchange', queue = queue_name)
 
 print " [*] Waiting for messages. To exit press CTRL+C"
 #logger.info(" [*] Waiting for messages. To exit press CTRL+C")
@@ -39,6 +23,8 @@ print " [*] Waiting for messages. To exit press CTRL+C"
 
 def callback(ch, method, properties, body):
     print " [x] Received %r\n\n" % (body,)
+
+'''
     try:
         data = json.loads(body)
     except (ValueError):
@@ -61,6 +47,7 @@ def callback(ch, method, properties, body):
         print 'Invalid receivers'
         #logger.error('Invalid receivers')
         return
+'''
 
 if __name__ == '__main__':
     try:
@@ -71,3 +58,4 @@ if __name__ == '__main__':
 	channel.stop_consuming()
     connection.close()
     sys.exit(1)
+
