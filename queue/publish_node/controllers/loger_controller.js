@@ -7,7 +7,7 @@ var queueName      = gk.config.mqQueueName;
 //테스트를 위해서
 exports.send = function(req, res) {  
 
-  var type     = req.body.type;
+  var type      = req.body.type;
   var receivers = req.body.receivers;
   var data      = req.body.data;
 

@@ -21,7 +21,7 @@ var connection      = amqp.createConnection(gk.config.mq);
 
 connection.addListener('ready', function () {
   console.log("connected to " + connection.serverProperties.product);
-  exchange = connection.exchange(exports.LOGER_EXCHANGE_NAME ,{ type:"fanout", durable:true } );
+  exchange = connection.exchange(exports.LOGER_EXCHANGE_NAME ,{ type:"topic", durable:true } );
   _queue[exports.LOGER_QUEUE_NAME] = exchange;
   _isReady = true;
 });
