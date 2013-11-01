@@ -5,7 +5,7 @@ var config = null;
 var code = require('./code.json');
 
 if (true) {
-  config = require('./dev.json');
+  config = require('./develop.json');
 }
 
 config['code'] = code;

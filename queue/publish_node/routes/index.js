@@ -1,12 +1,11 @@
-'use strict';
-var ERR_EXTENSION_CONNECT =  "0x_000001";
+'use strict'
+
+var loger = require(__dirname + '/../controllers/loger_controller');
 
 var routes = function(app) {
-  var push = require(__dirname + '/../controllers/push');
-
-  // push
-  app.post('/push/send', push.send);
-};
+  // common
+  app.post('/loger/send', loger.send);
+}
   
 exports.route = routes;
 

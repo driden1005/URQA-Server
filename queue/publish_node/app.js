@@ -11,6 +11,7 @@ var errorHandler = require('./middleware/error_handler');
 // app
 var app = express();
 app.configure(function() {
+    app.set('views', './apiviewer/views');
     app.set('view engine', 'jade');
     app.locals.pretty = true;
     app.use(express.bodyParser());

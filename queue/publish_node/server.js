@@ -3,9 +3,11 @@
 var cluster = require('cluster');
 
 if (cluster.isMaster) {
+
+    //cluster.fork();
     require('os').cpus().forEach(function() {
         cluster.fork();
-    });
+     });
 
     cluster.on('online', function(worker) {
         console.log('worker ' + worker.process.pid + ' is being executed.');
