@@ -1,4 +1,4 @@
-mport sys
+import sys
 import pika
 import json
 
@@ -55,7 +55,7 @@ def callback(ch, method, properties, body):
 
     receivers = data['receivers']
     message   = data['data']
-    ostype    = data['os']
+    ostype    = data['type']
 
     if type(receivers) is not list:
         print 'Invalid receivers'
