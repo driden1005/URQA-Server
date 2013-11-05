@@ -1,5 +1,5 @@
 var config = require(__dirname + '/../config');
-var winston = require('winston');
+//var winston = require('winston');
 
 // set logging level
 var loggerConfig = {
@@ -21,13 +21,13 @@ var loggerConfig = {
   }
 };
 
-var serverLogger = new (winston.Logger)({ levels: loggerConfig.levels });
-winston.addColors(loggerConfig.colors);
+//var serverLogger = new (winston.Logger)({ levels: loggerConfig.levels });
+//winston.addColors(loggerConfig.colors);
 
 // add logging transports
 if (config.logging) {
   try {
-    winston.remove(winston.transports.Console);
+    //winston.remove(winston.transports.Console);
     serverLogger.remove(winston.transports.Console);
   } catch (e) { }
 
@@ -36,13 +36,13 @@ if (config.logging) {
     detail = config.logging[i];
     type = detail.type;
     delete detail.type;
-    winston.add(winston.transports[type], detail);
-    serverLogger.add(winston.transports[type], detail);
+    //winston.add(winston.transports[type], detail);
+    //serverLogger.add(winston.transports[type], detail);
   }
 }
 
 //winston.info("gklogger(using RabbitMQ and fluentd) initialized");
-serverLogger.info("gklogger(using Rabbit MQ and fluentd) initialized");
+serverLogger.info("gklogger(using Rabbit MQ ) initialized");
 
 //module.exports = winston;
 module.exports = serverLogger;
