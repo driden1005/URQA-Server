@@ -31,3 +31,6 @@ channel.basic_publish(exchange='',
 
 print " [x] Sender %r" % (message,)
 connection.close()
+
+
+

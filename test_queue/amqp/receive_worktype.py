@@ -2,15 +2,6 @@ import sys
 import pika
 import json
 
-'''
-import logging
-logger = logging.getLogger('worker')
-handler = logging.FileHandler('/home/workspace/develop/rabbitmq/URQA-Server/queue/amqp/log/worker.log')
-formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
-'''
 
 credentials = pika.PlainCredentials('guest', 'guest')
 parameters  = pika.ConnectionParameters(host='14.63.164.245', 
@@ -31,30 +22,7 @@ def callback(ch, method, properties, body):
     print " [x] Received %r\n\n" % (body,)
 
 
-'''
-    try:
-        data = json.loads(body)
-    except (ValueError):
-        print 'JSON TypeError'
-        #logger.error('JSON TypeError')
-        return
 
-    fields = ['receivers', 'data'];
-    result = filter(lambda x: x in data, fields)
-    if len(result) != len(fields):
-        print 'Get off'
-        #logger.error('Get off')
-        return
-
-    receivers = data['receivers']
-    message   = data['data']
-    ostype    = data['os']
-
-    if type(receivers) is not list:
-        print 'Invalid receivers'
-        #logger.error('Invalid receivers')
-        return
-'''
 
 
 

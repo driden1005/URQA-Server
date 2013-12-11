@@ -21,3 +21,5 @@ channel.basic_publish(exchange='ur-exchange',
 
 print " [x] Sent %r" % (message,)
 connection.close()
+
+
