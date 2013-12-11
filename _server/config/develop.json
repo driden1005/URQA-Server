@@ -1,0 +1,43 @@
+{
+  "dev": true,
+  "host": "0.0.0.0",
+  "port": 55555,
+  "server_url": "http://39.115.145.50:8080",
+  "static_url": "http://39.115.145.50:8080/static/ts/",
+  "notice_url": "http://www.playgumi.com/event/notice.php",
+  "server_id": 1,
+  "logging": [
+    {
+      "level": "verbose",
+      "type": "Console",
+      "colorize": true,
+      "timestamp": true
+    }
+  ],
+  "redis": {
+    "namespace": "dev",
+    "master": [
+      {
+        "host": "127.0.0.1",
+        "port": 6379,
+        "pass": "",
+        "namespace": "dev",
+        "scripts_dir": "../scripts/lua/"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 6380,
+        "pass": "",
+        "namespace": "dev",
+        "scripts_dir": "../scripts/lua/"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 9999,
+        "pass": "",
+        "namespace": "dev",
+        "scripts_dir": "../scripts/lua/"
+      }
+    ]
+  }
+}
