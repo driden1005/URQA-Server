@@ -6,10 +6,9 @@ process.env.TZ = 'Asia/Seoul';
 var express = require('express');
 
 //Midleware
-var checkTokenMidleware = require('./middleware/check_token');
 var errorHandler = require('./middleware/error_handler');
 //var updateStatsMidleware = require('./middleware/update_stats');
-
+//var checkTokenMidleware  = require('./middleware/check_token');
 
 // app
 var app = express();
@@ -19,8 +18,8 @@ app.configure(function() {
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     app.use(express.compress());
-    app.use(checkTokenMidleware());
     app.use(errorHandler());
+    //app.use(checkTokenMidleware());
     //app.use(updateStatsMidleware());
 });
 
@@ -29,6 +28,5 @@ app.configure(function() {
 var router = require('./routes');
 router.route(app);
 
-
 app.listen(gk.config.port);
-gk.log.info("Server started at port " + gk.config.port);
+console.log("Server started at port " + gk.config.port);

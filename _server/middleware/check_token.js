@@ -1,17 +1,13 @@
 'use strict';
 
-var gk             = require('../common');
-
-//var AccountHandler = require('../handler/account');
-//var UserHandler    = require('../handler/user');
-var _helper = require(__dirname + '/../controllers/helper');
+var gk       = require('../common');
+var _helper  = require(__dirname + '/../utils/helper');
 
 // keys
-var _keyPrefix = gk.config.redis.namespace;
-var _baseKey = _keyPrefix + ':accounts:';
-
-var _tokensKey = _baseKey + 'tokens';
-
+//var _keyPrefix = gk.config.redis.namespace;
+//var _baseKey = _keyPrefix + ':accounts:';
+//var _tokensKey = _baseKey + 'tokens';
+  
 
 module.exports = function() {
   return function(req, res, next) {    
@@ -26,23 +22,6 @@ module.exports = function() {
     if (token == null || token.length == 0) {
       return sendResult(res, result, 'MissingToken');
     }
-/*
-    try{
-      AccountHandler.compareToken(token, function(err, aid) {
-        if (err || aid == null) { 
-          gk.log.error(err);
-          err = 'NotMatchedToken';
-          return sendResult(res, result, err);
-        }
-        logger.access(aid, req.url, true, parseInt(0));
-        req.body.aid = aid;
-        next();
-      });
-
-    }catch(e){
-      return sendResult(res, result, '');
-    }
-*/
 
   }
 };

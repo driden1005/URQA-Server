@@ -38,6 +38,7 @@ urlpatterns = patterns('',
 
     #project manage
     url(r'^urqa/project/registration$', 'projectmanage.views.registration'),
+
     url(r'^urqa/project/(?P<apikey>.{8})/delete$', 'projectmanage.views.delete_req'),
     url(r'^urqa/project/(?P<apikey>.{8})/modify$', 'projectmanage.views.modify_req'),
     url(r'^urqa/project/(?P<apikey>.{8})/$', 'projectmanage.views.projectdashboard'),
