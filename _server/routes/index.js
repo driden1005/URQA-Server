@@ -1,10 +1,26 @@
 'use strict'
+var publish = require(__dirname + '/../controllers/publish_test');
+
 
 var routes = function(app) {
-  var common = require(__dirname + '/../controllers/common');
+  // test
+  app.post('/hello$', publish.send);
 
-  // common
-  app.post('/hello', common.hello);
+  //app.post('/urqa$', rqa.views.index);
+  //app.post('/urqa/posttest$', urqa.views.posttest);
+  //app.post('/urqa/fileuploadtest$', urqa.views.fileuploadtest);
+  //app.post('/urqa/cleanup$', urqa.views.cleanup);
+
+  //client module
+  app.post('/urqa/client/connect$', 'client.views.connect'),
+  app.post('/urqa/client/send/exception$', 'client.views.receive_exception'),
+  app.post('/urqa/client/send/exception/native$', 'client.views.receive_native'),
+  app.post('/urqa/client/send/exception/dump/(?P<idinstance>\d+)$', 'client.views.receive_native_dump'),
+  app.post('/urqa/client/send/exception/log/(?P<idinstance>\d+)$', 'client.views.receive_exception_log'),
+  //#url(r'/urqa/client/send/eventpath/(?P<idsession>\d+)$', 'client.views.receive_eventpath'),
+  //#url(r'/urqa/client/send/eventpath/(?P<idsession>.+)$', 'client.views.receive_eventpath'),
+  app.post('/urqa/client/send/eventpath$', 'client.views.receive_eventpath'),
+
 }
   
 exports.route = routes;

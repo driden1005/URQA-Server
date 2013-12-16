@@ -7,6 +7,5 @@ module.exports = common = {
   store:function (aid) {
     return require(__dirname + '/utils/store').store(aid);
   },
-  log:require(__dirname + '/utils/gklogger'),
   helper:require(__dirname + '/utils/helper')
 };
