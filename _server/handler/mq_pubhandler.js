@@ -14,7 +14,8 @@ var retry           = 3;
 
 connection.addListener('ready', function () {
   console.log("connected to " + connection.serverProperties.product);
-  var exchange = connection.exchange(exports.LOGER_EXCHANGE_NAME ,{ type:"topic", durable:true } );
+  
+  var exchange = connection.exchange(exports.LOGER_EXCHANGE_NAME ,{ type:"fanout", durable:true } );
   _queue[exports.LOGER_QUEUE_NAME] = exchange;
   _isReady = true;
 });
