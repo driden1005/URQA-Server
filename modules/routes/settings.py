@@ -109,10 +109,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'soma3.urls'
+ROOT_URLCONF = 'routes.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'soma3.wsgi.application'
+WSGI_APPLICATION = 'routes.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__),os.path.join(os.path.pardir, 'templates')),

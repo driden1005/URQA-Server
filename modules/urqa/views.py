@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from urqa.models import Session
 
-from soma3.settings import STATIC_URL
+from routes.settings import STATIC_URL
 
 def index(request):
 

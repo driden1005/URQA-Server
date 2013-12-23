@@ -2,7 +2,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
-from soma3 import settings
+from routes import settings
 from django.views.generic import RedirectView
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
